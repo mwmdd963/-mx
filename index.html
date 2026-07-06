@@ -1,781 +1,351 @@
+تفضّل الكود الكامل المُحدَّث في صفحة واحدة index.html:
 
 <!doctype html>
 <html lang="ar" dir="rtl">
-
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <meta name="theme-color" content="#022c22" />
-    <title>الفائز للعقارات</title>
-    <style>
-        *,
-        *::before,
-        *::after {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        :root {
-            --emerald-950: #022c22;
-            --emerald-900: #064e3b;
-            --emerald-700: #047857;
-            --emerald-600: #059669;
-            --emerald-500: #10b981;
-            --emerald-400: #34d399;
-            --emerald-300: #6ee7b7;
-            --emerald-100: #d1fae5;
-            --emerald-50: #ecfdf5;
-            --gray-900: #111827;
-            --gray-800: #1f2937;
-            --gray-600: #4b5563;
-            --gray-500: #6b7280;
-            --gray-400: #9ca3af;
-            --gray-200: #e5e7eb;
-            --gray-100: #f3f4f6;
-            --slate-100: #f1f5f9;
-        }
-
-        html {
-            -webkit-text-size-adjust: 100%;
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: 'Tajawal', ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-            color: var(--gray-900);
-            background: linear-gradient(to bottom, #fff, var(--slate-100));
-            min-height: 100vh;
-            -webkit-font-smoothing: antialiased;
-            -webkit-tap-highlight-color: transparent;
-        }
-
-        img {
-            display: block;
-            max-width: 100%;
-        }
-
-        button {
-            font-family: inherit;
-            cursor: pointer;
-            border: none;
-            background: none;
-        }
-
-        a {
-            text-decoration: none;
-        }
-
-        .container {
-            max-width: 80rem;
-            margin: 0 auto;
-            padding-left: 1.5rem;
-            padding-right: 1.5rem;
-        }
-
-        header {
-            position: sticky;
-            top: 0;
-            z-index: 50;
-            background: var(--emerald-950);
-            color: #fff;
-            border-bottom: 1px solid var(--emerald-900);
-        }
-
-        .nav {
-            max-width: 80rem;
-            margin: 0 auto;
-            padding: 1rem 1.5rem;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .brand {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #fff;
-            cursor: pointer;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            align-items: center;
-        }
-
-        .nav-links button {
-            color: var(--emerald-100);
-            background: none;
-            font-size: 1rem;
-            transition: color .2s;
-        }
-
-        .nav-links button:hover {
-            color: #fff;
-        }
-
-        .btn-contact {
-            background: #fff;
-            color: var(--emerald-950);
-            padding: .625rem 1.5rem;
-            border-radius: 9999px;
-            font-weight: 700;
-            transition: background .2s;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, .2);
-        }
-
-        .btn-contact:hover {
-            background: var(--emerald-50);
-        }
-
-        .bottom-nav {
-            display: none;
-        }
-
-        .bottom-nav a,
-        .bottom-nav button {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            color: var(--emerald-300);
-            background: none;
-            transition: color .2s;
-        }
-
-        .bottom-nav .active {
-            color: #fff;
-        }
-
-        .bottom-nav span {
-            font-size: .75rem;
-            margin-top: .25rem;
-        }
-
-        .hero {
-            position: relative;
-            width: 100%;
-            height: 100vh;
-            height: 100dvh;
-            overflow: hidden;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, .25);
-        }
-
-        .hero>img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .hero-overlay {
-            position: absolute;
-            inset: 0;
-            background: rgba(0, 0, 0, .5);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            color: #fff;
-            text-align: center;
-            padding: 1.5rem;
-        }
-
-        .hero-overlay h1 {
-            font-size: 2rem;
-            font-weight: 800;
-            margin-bottom: 1rem;
-            line-height: 1.2;
-        }
-
-        .hero-overlay p {
-            font-size: 1.125rem;
-            max-width: 42rem;
-            margin-bottom: 2rem;
-        }
-
-        .btn-primary {
-            background: var(--emerald-600);
-            color: #fff;
-            padding: .75rem 2rem;
-            border-radius: 9999px;
-            font-weight: 700;
-            font-size: 1.125rem;
-            transition: background .2s;
-        }
-
-        .btn-primary:hover {
-            background: var(--emerald-700);
-        }
-
-        .section {
-            max-width: 80rem;
-            margin: 0 auto;
-            padding: 3rem 1.5rem;
-        }
-
-        .section-title {
-            font-size: 1.875rem;
-            font-weight: 700;
-            text-align: center;
-            margin-bottom: 2.5rem;
-        }
-
-        .filters {
-            display: flex;
-            gap: 1rem;
-            margin-bottom: 2.5rem;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .filter-btn {
-            padding: .5rem 1.5rem;
-            border-radius: 9999px;
-            font-weight: 600;
-            transition: all .2s;
-            background: #fff;
-            color: var(--gray-600);
-            box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
-            border: 1px solid var(--gray-200);
-        }
-
-        .filter-btn:hover {
-            background: var(--gray-100);
-        }
-
-        .filter-btn.active {
-            background: var(--emerald-600);
-            color: #fff;
-            border-color: var(--emerald-600);
-        }
-
-        .grid-props {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 2rem;
-        }
-
-        .card {
-            background: #fff;
-            border-radius: 1rem;
-            box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
-            border: 1px solid var(--gray-100);
-            overflow: hidden;
-            cursor: pointer;
-            transition: box-shadow .3s;
-        }
-
-        .card:hover {
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, .1), 0 8px 10px -6px rgba(0, 0, 0, .1);
-        }
-
-        .card img {
-            width: 100%;
-            height: 12rem;
-            object-fit: cover;
-        }
-
-        .card-body {
-            padding: 1.25rem;
-        }
-
-        .card-body h3 {
-            font-size: 1.25rem;
-            font-weight: 600;
-            color: var(--gray-900);
-            margin-bottom: .5rem;
-        }
-
-        .card-loc {
-            color: var(--gray-500);
-            margin-bottom: .75rem;
-            display: flex;
-            align-items: center;
-            gap: .25rem;
-        }
-
-        .card-price {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--emerald-600);
-        }
-
-        .grid-reviews {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 1.5rem;
-        }
-
-        .review {
-            background: #fff;
-            padding: 1.5rem;
-            border-radius: 1.5rem;
-            box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
-            border: 1px solid var(--gray-100);
-            display: flex;
-            flex-direction: column;
-            gap: .5rem;
-        }
-
-        .stars {
-            display: flex;
-            color: var(--emerald-500);
-            margin-bottom: .5rem;
-        }
-
-        .review p.comment {
-            color: var(--gray-600);
-            margin-bottom: 1rem;
-            flex: 1;
-        }
-
-        .review p.name {
-            font-weight: 700;
-            color: var(--emerald-900);
-        }
-
-        .modal-back {
-            position: fixed;
-            inset: 0;
-            background: rgba(0, 0, 0, .5);
-            z-index: 60;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 1.5rem;
-            animation: overlayIn .2s ease-out both;
-        }
-
-        .modal {
-            background: #fff;
-            padding: 2rem;
-            border-radius: 1.5rem;
-            max-width: 32rem;
-            width: 100%;
-            max-height: 90vh;
-            overflow-y: auto;
-            animation: modalIn .25s ease-out both;
-        }
-
-        .modal h2 {
-            font-size: 1.875rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-        }
-
-        .modal img {
-            width: 100%;
-            height: 16rem;
-            object-fit: cover;
-            border-radius: 1rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .modal .desc {
-            color: var(--gray-600);
-            margin-bottom: 1rem;
-        }
-
-        .modal .price {
-            font-size: 1.25rem;
-            font-weight: 700;
-            color: var(--emerald-600);
-            margin-bottom: 1.5rem;
-        }
-
-        .modal-actions {
-            display: flex;
-            flex-direction: column;
-            gap: .75rem;
-        }
-
-        .modal-actions a {
-            width: 100%;
-            background: var(--emerald-600);
-            color: #fff;
-            padding: .75rem;
-            border-radius: 9999px;
-            font-weight: 700;
-            text-align: center;
-            transition: background .2s;
-        }
-
-        .modal-actions a:hover {
-            background: var(--emerald-700);
-        }
-
-        .modal-actions button {
-            width: 100%;
-            background: var(--gray-100);
-            color: var(--gray-900);
-            padding: .75rem;
-            border-radius: 9999px;
-            font-weight: 700;
-            transition: background .2s;
-        }
-
-        .modal-actions button:hover {
-            background: var(--gray-200);
-        }
-
-        footer {
-            background: var(--emerald-950);
-            color: #fff;
-            padding: 4rem 1.5rem;
-        }
-
-        .footer-grid {
-            max-width: 80rem;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 3rem;
-        }
-
-        .footer-grid h3.big {
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            color: var(--emerald-500);
-        }
-
-        .footer-grid h3 {
-            font-size: 1.25rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-        }
-
-        .footer-grid p {
-            color: var(--gray-400);
-        }
-
-        .footer-links {
-            display: flex;
-            flex-direction: column;
-            gap: .5rem;
-        }
-
-        .footer-links button {
-            color: var(--gray-400);
-            text-align: right;
-            transition: color .2s;
-        }
-
-        .footer-links button:hover {
-            color: #fff;
-        }
-
-        .footer-phone {
-            color: var(--emerald-400);
-            font-weight: 700;
-            font-size: 1.125rem;
-            transition: color .2s;
-        }
-
-        .footer-phone:hover {
-            color: var(--emerald-300);
-        }
-
-        .footer-bottom {
-            max-width: 80rem;
-            margin: 3rem auto 0;
-            text-align: center;
-            border-top: 1px solid var(--gray-800);
-            padding-top: 2rem;
-            color: var(--gray-500);
-        }
-
-        @keyframes pageIn {
-            from {
-                opacity: 0;
-                transform: translateX(20px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        .page-anim {
-            animation: pageIn .35s ease-out both;
-        }
-
-        @keyframes gridIn {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .grid-anim {
-            animation: gridIn .35s ease-out both;
-        }
-
-        @keyframes overlayIn {
-            from {
-                opacity: 0;
-            }
-
-            to {
-                opacity: 1;
-            }
-        }
-
-        @keyframes modalIn {
-            from {
-                opacity: 0;
-                transform: scale(.9);
-            }
-
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
-        }
-
-        @media (max-width: 767px) {
-            .nav-links {
-                display: none;
-            }
-
-            main {
-                padding-bottom: 5rem;
-            }
-
-            .bottom-nav {
-                display: flex;
-                position: fixed;
-                bottom: 0;
-                left: 0;
-                right: 0;
-                background: var(--emerald-950);
-                border-top: 1px solid var(--emerald-900);
-                padding: .5rem;
-                padding-bottom: calc(.5rem + env(safe-area-inset-bottom));
-                justify-content: space-around;
-                z-index: 50;
-            }
-
-            .hero-overlay h1 {
-                font-size: 1.75rem;
-            }
-
-            .hero-overlay p {
-                font-size: 1rem;
-            }
-
-            .section-title {
-                font-size: 1.5rem;
-            }
-        }
-
-        @media (min-width: 768px) {
-            .grid-props {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .grid-reviews {
-                grid-template-columns: repeat(3, 1fr);
-            }
-
-            .footer-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-
-            .footer-col-center {
-                text-align: center;
-            }
-
-            .footer-col-center .footer-links button {
-                text-align: center;
-            }
-
-            .footer-col-end {
-                text-align: left;
-            }
-
-            .hero-overlay h1 {
-                font-size: 3rem;
-            }
-        }
-
-        @media (min-width: 1024px) {
-            .grid-props {
-                grid-template-columns: repeat(3, 1fr);
-            }
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#022c22" />
+  <title>الفائز للعقارات</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root{
+      --emerald-950:#022c22; --emerald-900:#064e3b; --emerald-700:#047857;
+      --emerald-600:#059669; --emerald-500:#10b981; --emerald-400:#34d399;
+      --emerald-300:#6ee7b7; --emerald-100:#d1fae5; --emerald-50:#ecfdf5;
+      --gray-900:#111827; --gray-800:#1f2937; --gray-600:#4b5563; --gray-500:#6b7280;
+      --gray-400:#9ca3af; --gray-200:#e5e7eb; --gray-100:#f3f4f6; --slate-100:#f1f5f9;
+    }
+    html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+    body{
+      font-family:'Tajawal', ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      color: var(--gray-900);
+      background: linear-gradient(to bottom, #fff, var(--slate-100));
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+      -webkit-tap-highlight-color: transparent;
+    }
+    img { display:block; max-width:100%; }
+    button { font-family: inherit; cursor: pointer; border: none; background: none; }
+    a { text-decoration: none; }
+
+    header{
+      position: sticky; top: 0; z-index: 50;
+      background: var(--emerald-950); color:#fff;
+      border-bottom: 1px solid var(--emerald-900);
+    }
+    .nav{ max-width:80rem; margin:0 auto; padding:1rem 1.5rem; display:flex; align-items:center; justify-content:space-between; }
+    .brand{ font-size:1.5rem; font-weight:700; color:#fff; cursor:pointer; }
+    .nav-links{ display:flex; gap:2rem; align-items:center; }
+    .nav-links button{ color:var(--emerald-100); background:none; font-size:1rem; transition:color .2s; }
+    .nav-links button:hover{ color:#fff; }
+    .btn-contact{
+      background:#fff; color:var(--emerald-950); padding:.625rem 1.5rem;
+      border-radius:9999px; font-weight:700; transition:background .2s;
+      box-shadow:0 10px 15px -3px rgba(0,0,0,.2);
+    }
+    .btn-contact:hover{ background:var(--emerald-50); }
+
+    .bottom-nav{ display:none; }
+    .bottom-nav a, .bottom-nav button{
+      display:flex; flex-direction:column; align-items:center;
+      color:var(--emerald-300); background:none; transition:color .2s;
+    }
+    .bottom-nav .active{ color:#fff; }
+    .bottom-nav span{ font-size:.75rem; margin-top:.25rem; }
+
+    .hero{
+      position:relative; width:100%; height:100vh; height:100dvh; overflow:hidden;
+      box-shadow:0 25px 50px -12px rgba(0,0,0,.25);
+      background-image:url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1600');
+      background-size:cover; background-position:center; background-repeat:no-repeat;
+    }
+    .hero-overlay{
+      position:absolute; inset:0; background:rgba(0,0,0,.5);
+      display:flex; flex-direction:column; align-items:center; justify-content:center;
+      color:#fff; text-align:center; padding:1.5rem;
+    }
+    .hero-overlay h1{ font-size:2rem; font-weight:800; margin-bottom:1rem; line-height:1.2; }
+    .hero-overlay p{ font-size:1.125rem; max-width:42rem; margin-bottom:2rem; }
+    .btn-primary{
+      background:var(--emerald-600); color:#fff; padding:.75rem 2rem;
+      border-radius:9999px; font-weight:700; font-size:1.125rem; transition:background .2s;
+    }
+    .btn-primary:hover{ background:var(--emerald-700); }
+
+    .section{ max-width:80rem; margin:0 auto; padding:3rem 1.5rem; }
+    .section-title{ font-size:1.875rem; font-weight:700; text-align:center; margin-bottom:2.5rem; }
+
+    .filters{ display:flex; gap:1rem; margin-bottom:2.5rem; justify-content:center; flex-wrap:wrap; }
+    .filter-btn{
+      padding:.5rem 1.5rem; border-radius:9999px; font-weight:600; transition:all .2s;
+      background:#fff; color:var(--gray-600); box-shadow:0 1px 2px rgba(0,0,0,.05); border:1px solid var(--gray-200);
+    }
+    .filter-btn:hover{ background:var(--gray-100); }
+    .filter-btn.active{ background:var(--emerald-600); color:#fff; border-color:var(--emerald-600); }
+
+    .grid-props{ display:grid; grid-template-columns:1fr; gap:2rem; }
+    .card{
+      background:#fff; border-radius:1rem; box-shadow:0 1px 2px rgba(0,0,0,.05);
+      border:1px solid var(--gray-100); overflow:hidden; cursor:pointer;
+      transition:box-shadow .3s;
+    }
+    .card:hover{ box-shadow:0 20px 25px -5px rgba(0,0,0,.1), 0 8px 10px -6px rgba(0,0,0,.1); }
+    .card img{ width:100%; height:12rem; object-fit:cover; }
+    .card-body{ padding:1.25rem; }
+    .card-body h3{ font-size:1.25rem; font-weight:600; color:var(--gray-900); margin-bottom:.5rem; }
+    .card-loc{ color:var(--gray-500); margin-bottom:.75rem; display:flex; align-items:center; gap:.25rem; }
+    .card-price-row{ display:flex; align-items:baseline; justify-content:space-between; gap:.5rem; flex-wrap:wrap; }
+    .card-price{ font-size:1.5rem; font-weight:700; color:var(--emerald-600); }
+    .card-area{ font-size:1rem; font-weight:700; color:var(--emerald-600); }
+
+    .grid-reviews{ display:grid; grid-template-columns:1fr; gap:1.5rem; }
+    .review{
+      background:#fff; padding:1.5rem; border-radius:1.5rem; box-shadow:0 1px 2px rgba(0,0,0,.05);
+      border:1px solid var(--gray-100); display:flex; flex-direction:column; gap:.5rem;
+    }
+    .stars{ display:flex; color:var(--emerald-500); margin-bottom:.5rem; }
+    .review p.comment{ color:var(--gray-600); margin-bottom:1rem; flex:1; }
+    .review p.name{ font-weight:700; color:var(--emerald-900); }
+
+    .modal-back{
+      position:fixed; inset:0; background:rgba(0,0,0,.5); z-index:60;
+      display:flex; align-items:center; justify-content:center; padding:1.5rem;
+      animation: overlayIn .2s ease-out both;
+    }
+    .modal{
+      background:#fff; padding:2rem; border-radius:1.5rem; max-width:32rem; width:100%;
+      max-height:90vh; overflow-y:auto; animation: modalIn .25s ease-out both;
+    }
+    .modal h2{ font-size:1.875rem; font-weight:700; margin-bottom:1rem; }
+    .modal img{ width:100%; height:16rem; object-fit:cover; border-radius:1rem; margin-bottom:1.5rem; }
+    .modal .desc{ color:var(--gray-600); margin-bottom:1rem; }
+    .modal .price{ font-size:1.25rem; font-weight:700; color:var(--emerald-600); margin-bottom:1.5rem; }
+    .modal-actions{ display:flex; flex-direction:column; gap:.75rem; }
+    .modal-actions a{ width:100%; background:var(--emerald-600); color:#fff; padding:.75rem; border-radius:9999px; font-weight:700; text-align:center; transition:background .2s; }
+    .modal-actions a:hover{ background:var(--emerald-700); }
+    .modal-actions button{ width:100%; background:var(--gray-100); color:var(--gray-900); padding:.75rem; border-radius:9999px; font-weight:700; transition:background .2s; }
+    .modal-actions button:hover{ background:var(--gray-200); }
+
+    footer{ background:var(--emerald-950); color:#fff; padding:4rem 1.5rem; }
+    .footer-grid{ max-width:80rem; margin:0 auto; display:grid; grid-template-columns:1fr; gap:3rem; }
+    .footer-grid h3.big{ font-size:1.5rem; font-weight:700; margin-bottom:1rem; color:var(--emerald-500); }
+    .footer-grid h3{ font-size:1.25rem; font-weight:700; margin-bottom:1rem; }
+    .footer-grid p{ color:var(--gray-400); }
+    .footer-links{ display:flex; flex-direction:column; gap:.5rem; }
+    .footer-links button{ color:var(--gray-400); text-align:right; transition:color .2s; }
+    .footer-links button:hover{ color:#fff; }
+    .footer-phone{ color:var(--emerald-400); font-weight:700; font-size:1.125rem; transition:color .2s; }
+    .footer-phone:hover{ color:var(--emerald-300); }
+    .footer-bottom{ max-width:80rem; margin:3rem auto 0; text-align:center; border-top:1px solid var(--gray-800); padding-top:2rem; color:var(--gray-500); }
+
+    .btn-whatsapp{ display:inline-flex; align-items:center; gap:.5rem; background:#25D366; color:#fff; padding:.625rem 1.25rem; border-radius:9999px; font-weight:700; margin-top:.85rem; transition:background .2s; }
+    .btn-whatsapp:hover{ background:#1ebe57; }
+    .wa-float{ position:fixed; bottom:1.5rem; left:1.5rem; z-index:55; background:#25D366; color:#fff; width:56px; height:56px; border-radius:9999px; display:flex; align-items:center; justify-content:center; box-shadow:0 10px 20px rgba(0,0,0,.25); transition:transform .2s; }
+    .wa-float:hover{ transform:scale(1.08); }
+
+    @keyframes pageIn{ from{opacity:0; transform:translateX(20px);} to{opacity:1; transform:translateX(0);} }
+    .page-anim{ animation: pageIn .35s ease-out both; }
+    @keyframes gridIn{ from{opacity:0; transform:translateY(10px);} to{opacity:1; transform:translateY(0);} }
+    .grid-anim{ animation: gridIn .35s ease-out both; }
+    @keyframes overlayIn{ from{opacity:0;} to{opacity:1;} }
+    @keyframes modalIn{ from{opacity:0; transform:scale(.9);} to{opacity:1; transform:scale(1);} }
+
+    @media (max-width: 767px){
+      .nav-links{ display:none; }
+      main{ padding-bottom:5rem; }
+      .bottom-nav{
+        display:flex; position:fixed; bottom:0; left:0; right:0;
+        background:var(--emerald-950); border-top:1px solid var(--emerald-900);
+        padding:.5rem; padding-bottom:calc(.5rem + env(safe-area-inset-bottom));
+        justify-content:space-around; z-index:50;
+      }
+      .hero-overlay h1{ font-size:1.75rem; }
+      .hero-overlay p{ font-size:1rem; }
+      .section-title{ font-size:1.5rem; }
+      .wa-float{ bottom:5.5rem; }
+    }
+    @media (min-width: 768px){
+      .grid-props{ grid-template-columns:repeat(2,1fr); }
+      .grid-reviews{ grid-template-columns:repeat(3,1fr); }
+      .footer-grid{ grid-template-columns:repeat(3,1fr); }
+      .footer-col-center{ text-align:center; }
+      .footer-col-center .footer-links button{ text-align:center; }
+      .footer-col-end{ text-align:left; }
+      .hero-overlay h1{ font-size:3rem; }
+    }
+    @media (min-width: 1024px){
+      .grid-props{ grid-template-columns:repeat(3,1fr); }
+    }
+  </style>
 </head>
-
 <body>
-    <div id="app"></div>
+  <div id="app"></div>
 
-    <script>
-        var properties = [
-            { id: "1", title: "فيلا فاخرة", price: "٢,٥٠٠,٠٠٠ ر.س", location: "الرياض, حي الياسمين", fullDetails: "فيلا فاخرة مكونة من 5 غرف نوم، مسابح، وحديقة واسعة، في قلب حي الياسمين الراقي.", imageUrl: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=800", category: "villa" },
-            { id: "2", title: "فيلا كلاسيكية", price: "١,٨٠٠,٠٠٠ ر.س", location: "الرياض, حي الملقا", fullDetails: "فيلا بتصميم كلاسيكي رائع، مساحة كبيرة، وموقع استراتيجي في حي الملقا.", imageUrl: "https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&q=80&w=800", category: "villa" },
-            { id: "3", title: "فيلا مودرن", price: "٢,١٠٠,٠٠٠ ر.س", location: "الرياض, حي النرجس", fullDetails: "فيلا بتصميم مودرن عصري، مساحات واسعة، إضاءة ممتازة.", imageUrl: "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&q=80&w=800", category: "villa" },
-            { id: "4", title: "شقة مودرن", price: "٨٥٠,٠٠٠ ر.س", location: "جدة, حي الشاطئ", fullDetails: "شقة بتصميم عصري، إطلالة بحرية، وموقع متميز في جدة.", imageUrl: "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&q=80&w=800", category: "apartment" },
-            { id: "5", title: "شقة واسعة", price: "٩٥٠,٠٠٠ ر.س", location: "الدمام, حي الفيصلية", fullDetails: "شقة واسعة ومريحة، غرف نوم متعددة، ومرافق متكاملة.", imageUrl: "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&q=80&w=800", category: "apartment" },
-            { id: "6", title: "شقة في مجمع سكني", price: "٧٥٠,٠٠٠ ر.س", location: "الرياض, حي الصحافة", fullDetails: "شقة في مجمع سكني متكامل الخدمات، موقع ممتاز.", imageUrl: "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&q=80&w=800", category: "apartment" },
-            { id: "7", title: "أرض تجارية", price: "٤,٠٠٠,٠٠٠ ر.س", location: "الخبر, طريق الملك فهد", fullDetails: "أرض مميزة للاستثمار التجاري على طريق الملك فهد بالخبر.", imageUrl: "https://images.unsplash.com/photo-1594966144577-4b7cf8b90161?auto=format&fit=crop&q=80&w=800", category: "land" },
-            { id: "8", title: "أرض سكنية", price: "٦٠٠,٠٠٠ ر.س", location: "الرياض, حي نمار", fullDetails: "أرض سكنية ممتازة لبناء فيلا العمر في حي نمار الهادئ.", imageUrl: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&q=80&w=800", category: "land" },
-            { id: "9", title: "أرض في موقع مميز", price: "٩٠٠,٠٠٠ ر.س", location: "جدة, حي الزمرد", fullDetails: "أرض في موقع مميز، مساحة مناسبة لبناء استراحة أو فيلا.", imageUrl: "https://images.unsplash.com/photo-1473448912268-2022ce7509d8?auto=format&fit=crop&q=80&w=800", category: "land" },
-        ];
-        var navItems = [{ id: "villa", label: "الفيلات" }, { id: "apartment", label: "الشقق" }, { id: "land", label: "الأراضي التجارية" }];
-        var reviews = [
-            { name: "أحمد محمد", comment: "خدمة ممتازة واحترافية عالية", rating: 5 },
-            { name: "سارة خالد", comment: "ساعدوني في إيجاد منزل أحلامي", rating: 5 },
-            { name: "خالد عبد الله", comment: "تجربة رائعة وتعامل شفاف", rating: 4 },
-        ];
-        var PHONE = "+966123456789";
+  <script>
+    var properties = [
+      { id:"1", title:"فيلا فاخرة", price:"٢,٥٠٠,٠٠٠ ر.س", area:"٤٥٠ م²", location:"الرياض, حي الياسمين", fullDetails:"فيلا فاخرة مكونة من 5 غرف نوم، مسابح، وحديقة واسعة، في قلب حي الياسمين الراقي.", imageUrl:"https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=800", category:"villa" },
+      { id:"2", title:"فيلا كلاسيكية", price:"١,٨٠٠,٠٠٠ ر.س", area:"٤٠٠ م²", location:"الرياض, حي الملقا", fullDetails:"فيلا بتصميم كلاسيكي رائع، مساحة كبيرة، وموقع استراتيجي في حي الملقا.", imageUrl:"https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&q=80&w=800", category:"villa" },
+      { id:"3", title:"فيلا مودرن", price:"٢,١٠٠,٠٠٠ ر.س", area:"٤٢٠ م²", location:"الرياض, حي النرجس", fullDetails:"فيلا بتصميم مودرن عصري، مساحات واسعة، إضاءة ممتازة.", imageUrl:"https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&q=80&w=800", category:"villa" },
+      { id:"4", title:"شقة مودرن", price:"٨٥٠,٠٠٠ ر.س", area:"١٨٠ م²", location:"جدة, حي الشاطئ", fullDetails:"شقة بتصميم عصري، إطلالة بحرية، وموقع متميز في جدة.", imageUrl:"https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&q=80&w=800", category:"apartment" },
+      { id:"5", title:"شقة واسعة", price:"٩٥٠,٠٠٠ ر.س", area:"٢٢٠ م²", location:"الدمام, حي الفيصلية", fullDetails:"شقة واسعة ومريحة، غرف نوم متعددة، ومرافق متكاملة.", imageUrl:"https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&q=80&w=800", category:"apartment" },
+      { id:"6", title:"شقة في مجمع سكني", price:"٧٥٠,٠٠٠ ر.س", area:"١٦٠ م²", location:"الرياض, حي الصحافة", fullDetails:"شقة في مجمع سكني متكامل الخدمات، موقع ممتاز.", imageUrl:"https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&q=80&w=800", category:"apartment" },
+      { id:"7", title:"أرض تجارية", price:"٤,٠٠٠,٠٠٠ ر.س", area:"٩٠٠ م²", location:"الخبر, طريق الملك فهد", fullDetails:"أرض مميزة للاستثمار التجاري على طريق الملك فهد بالخبر.", imageUrl:"https://images.unsplash.com/photo-1594966144577-4b7cf8b90161?auto=format&fit=crop&q=80&w=800", category:"land" },
+      { id:"8", title:"أرض سكنية", price:"٦٠٠,٠٠٠ ر.س", area:"٦٠٠ م²", location:"الرياض, حي نمار", fullDetails:"أرض سكنية ممتازة لبناء فيلا العمر في حي نمار الهادئ.", imageUrl:"https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&q=80&w=800", category:"land" },
+      { id:"9", title:"أرض في موقع مميز", price:"٩٠٠,٠٠٠ ر.س", area:"٧٥٠ م²", location:"جدة, حي الزمرد", fullDetails:"أرض في موقع مميز، مساحة مناسبة لبناء استراحة أو فيلا.", imageUrl:"https://images.unsplash.com/photo-1473448912268-2022ce7509d8?auto=format&fit=crop&q=80&w=800", category:"land" },
+    ];
+    var WHATSAPP = "966123456789";
+    var navItems = [ {id:"villa",label:"الفيلات"}, {id:"apartment",label:"الشقق"}, {id:"land",label:"الأراضي التجارية"} ];
+    var reviews = [
+      { name:"أحمد محمد", comment:"خدمة ممتازة واحترافية عالية", rating:5 },
+      { name:"سارة خالد", comment:"ساعدوني في إيجاد منزل أحلامي", rating:5 },
+      { name:"خالد عبد الله", comment:"تجربة رائعة وتعامل شفاف", rating:4 },
+    ];
+    var PHONE = "+966123456789";
 
-        function svg(inner, size) {
-            size = size || 24;
-            return '<svg xmlns="http://www.w3.org/2000/svg" width="' + size + '" height="' + size + '" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' + inner + '</svg>';
-        }
-        var ICON = {
-            home: function (s) { return svg('<path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>', s); },
-            list: function (s) { return svg('<line x1="8" x2="21" y1="6" y2="6"/><line x1="8" x2="21" y1="12" y2="12"/><line x1="8" x2="21" y1="18" y2="18"/><line x1="3" x2="3.01" y1="6" y2="6"/><line x1="3" x2="3.01" y1="12" y2="12"/><line x1="3" x2="3.01" y1="18" y2="18"/>', s); },
-            phone: function (s) { return svg('<path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>', s); },
-            star: function (s, fill) { return '<svg xmlns="http://www.w3.org/2000/svg" width="' + (s || 24) + '" height="' + (s || 24) + '" viewBox="0 0 24 24" fill="' + (fill ? "currentColor" : "none") + '" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>'; },
-            pin: function (s) { return svg('<path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/>', s); }
-        };
+    function svg(inner, size){
+      size = size || 24;
+      return '<svg xmlns="http://www.w3.org/2000/svg" width="'+size+'" height="'+size+'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">'+inner+'</svg>';
+    }
+    var ICON = {
+      home: function(s){ return svg('<path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>', s); },
+      list: function(s){ return svg('<line x1="8" x2="21" y1="6" y2="6"/><line x1="8" x2="21" y1="12" y2="12"/><line x1="8" x2="21" y1="18" y2="18"/><line x1="3" x2="3.01" y1="6" y2="6"/><line x1="3" x2="3.01" y1="12" y2="12"/><line x1="3" x2="3.01" y1="18" y2="18"/>', s); },
+      phone: function(s){ return svg('<path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>', s); },
+      star: function(s, fill){ return '<svg xmlns="http://www.w3.org/2000/svg" width="'+(s||24)+'" height="'+(s||24)+'" viewBox="0 0 24 24" fill="'+(fill?"currentColor":"none")+'" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>'; },
+      pin: function(s){ return svg('<path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/>', s); },
+      whatsapp: function(s){ return '<svg xmlns="http://www.w3.org/2000/svg" width="'+(s||24)+'" height="'+(s||24)+'" viewBox="0 0 24 24" fill="currentColor"><path d="M17.6 6.3A7.85 7.85 0 0 0 12 4a7.94 7.94 0 0 0-6.9 11.9L4 20l4.2-1.1A8 8 0 0 0 12 20a7.94 7.94 0 0 0 5.6-13.7ZM12 18.5a6.6 6.6 0 0 1-3.4-.9l-.24-.15-2.5.66.67-2.43-.16-.25A6.55 6.55 0 1 1 12 18.5Zm3.6-4.9c-.2-.1-1.17-.58-1.35-.64s-.31-.1-.44.1-.5.64-.62.77-.23.15-.43.05a5.4 5.4 0 0 1-1.59-.98 6 6 0 0 1-1.1-1.37c-.11-.2 0-.3.09-.4l.3-.35a1.35 1.35 0 0 0 .2-.33.37.37 0 0 0 0-.35c0-.1-.44-1.06-.6-1.45s-.32-.33-.44-.34h-.38a.72.72 0 0 0-.52.24 2.19 2.19 0 0 0-.69 1.64 3.8 3.8 0 0 0 .8 2 8.71 8.71 0 0 0 3.34 2.95c.47.2.83.32 1.11.41a2.68 2.68 0 0 0 1.23.08 2 2 0 0 0 1.32-.93 1.65 1.65 0 0 0 .11-.93c-.05-.08-.18-.13-.38-.23Z"/></svg>'; }
+    };
 
-        var state = { page: "home", category: "villa" };
-        function esc(str) { return String(str).replace(/"/g, '&quot;'); }
+    var state = { page:"home", category:"villa" };
+    function esc(str){ return String(str).replace(/"/g,'&quot;'); }
 
-        function headerHTML() {
-            return ''
-                + '<header><nav class="nav">'
-                + '<h1 class="brand" data-go="home">الفائز للعقارات</h1>'
-                + '<div class="nav-links">'
-                + '<button data-go="home">الرئيسية</button>'
-                + '<button data-go="listings">عقاراتنا</button>'
-                + '<button data-go="reviews">التقييمات</button>'
-                + '<a class="btn-contact" href="tel:' + PHONE + '">تواصل معنا</a>'
-                + '</div>'
-                + '</nav></header>';
+    function headerHTML(){
+      return ''
+      + '<header><nav class="nav">'
+      +   '<h1 class="brand" data-go="home">الفائز للعقارات</h1>'
+      +   '<div class="nav-links">'
+      +     '<button data-go="home">الرئيسية</button>'
+      +     '<button data-go="listings">عقاراتنا</button>'
+      +     '<button data-go="reviews">التقييمات</button>'
+      +     '<a class="btn-contact" href="tel:'+PHONE+'">تواصل معنا</a>'
+      +   '</div>'
+      + '</nav></header>';
+    }
+    function bottomNavHTML(){
+      var a = function(page){ return state.page===page ? 'active' : ''; };
+      return ''
+      + '<div class="bottom-nav">'
+      +   '<button class="'+a("home")+'" data-go="home">'+ICON.home(20)+'<span>الرئيسية</span></button>'
+      +   '<button class="'+a("listings")+'" data-go="listings">'+ICON.list(20)+'<span>عقاراتنا</span></button>'
+      +   '<button class="'+a("reviews")+'" data-go="reviews">'+ICON.star(20)+'<span>التقييمات</span></button>'
+      +   '<a href="tel:'+PHONE+'">'+ICON.phone(20)+'<span>اتصل</span></a>'
+      + '</div>';
+    }
+    function homeHTML(){
+      return ''
+      + '<div class="hero">'
+      +   '<div class="hero-overlay">'
+      +     '<h1>مرحباً بكم في مكتب الفائز للعقارات</h1>'
+      +     '<p>وجهتكم الموثوقة للعقارات الفاخرة والفرص الاستثمارية في المملكة</p>'
+      +     '<button class="btn-primary" data-go="listings">تصفح عقاراتنا</button>'
+      +   '</div>'
+      + '</div>';
+    }
+    function cardHTML(p){
+      return ''
+      + '<div class="card" data-open="'+p.id+'">'
+      +   '<img src="'+p.imageUrl+'" alt="'+esc(p.title)+'" />'
+      +   '<div class="card-body">'
+      +     '<h3>'+p.title+'</h3>'
+      +     '<p class="card-loc">'+ICON.pin(16)+p.location+'</p>'
+      +     '<div class="card-price-row"><span class="card-price">'+p.price+'</span><span class="card-area">'+p.area+'</span></div>'
+      +   '</div>'
+      + '</div>';
+    }
+    function listingsHTML(){
+      var cat = state.category;
+      var filters = navItems.map(function(it){
+        return '<button class="filter-btn '+(cat===it.id?'active':'')+'" data-cat="'+it.id+'">'+it.label+'</button>';
+      }).join('');
+      var cards = properties.filter(function(p){ return p.category===cat; }).map(cardHTML).join('');
+      return ''
+      + '<div class="section">'
+      +   '<h2 class="section-title">استكشف عقاراتنا المميزة</h2>'
+      +   '<div class="filters">'+filters+'</div>'
+      +   '<div class="grid-props grid-anim" id="propGrid">'+cards+'</div>'
+      + '</div>';
+    }
+    function reviewsHTML(){
+      var items = reviews.map(function(r){
+        var stars=''; for(var i=0;i<r.rating;i++){ stars+=ICON.star(18,true); }
+        return '<div class="review"><div class="stars">'+stars+'</div><p class="comment">"'+r.comment+'"</p><p class="name">'+r.name+'</p></div>';
+      }).join('');
+      return '<div class="section"><h2 class="section-title">آراء عملائنا</h2><div class="grid-reviews">'+items+'</div></div>';
+    }
+    function footerHTML(){
+      return ''
+      + '<footer><div class="footer-grid">'
+      +   '<div><h3 class="big">الفائز للعقارات</h3><p>وجهتكم الموثوقة للعقارات الفاخرة والفرص الاستثمارية في المملكة. نلتزم بتقديم أفضل الخدمات العقارية بكل احترافية وشفافية.</p></div>'
+      +   '<div class="footer-col-center"><h3>روابط سريعة</h3><div class="footer-links"><button data-go="home">الرئيسية</button><button data-go="listings">عقاراتنا</button><button data-go="reviews">التقييمات</button></div></div>'
+      +   '<div class="footer-col-end"><h3>تواصل معنا</h3><a class="footer-phone" href="tel:'+PHONE+'">'+PHONE+'</a><p style="margin-top:.5rem">الرياض، المملكة العربية السعودية</p><a class="btn-whatsapp" href="https://wa.me/'+WHATSAPP+'" target="_blank" rel="noopener">'+ICON.whatsapp(20)+'تواصل معنا على واتساب</a></div>'
+      + '</div>'
+      + '<div class="footer-bottom">جميع الحقوق محفوظة © 2026 الفائز للعقارات</div>'
+      + '</footer>';
+    }
+    function pageBody(){
+      if(state.page==="home") return homeHTML();
+      if(state.page==="listings") return listingsHTML();
+      return reviewsHTML();
+    }
+    function render(){
+      var app = document.getElementById("app");
+      app.innerHTML = headerHTML()
+        + bottomNavHTML()
+        + '<main><div class="page-anim">'+pageBody()+'</div></main>'
+        + footerHTML()
+        + '<a class="wa-float" href="https://wa.me/'+WHATSAPP+'" target="_blank" rel="noopener" aria-label="واتساب">'+ICON.whatsapp(28)+'</a>';
+    }
+    function openModal(id){
+      var p = properties.filter(function(x){ return x.id===id; })[0];
+      if(!p) return;
+      var back = document.createElement("div");
+      back.className = "modal-back";
+      back.innerHTML = ''
+      + '<div class="modal">'
+      +   '<h2>'+p.title+'</h2>'
+      +   '<img src="'+p.imageUrl+'" alt="'+esc(p.title)+'" />'
+      +   '<p class="desc">'+p.fullDetails+'</p>'
+      +   '<p class="price">'+p.price+'</p>'
+      +   '<div class="modal-actions">'
+      +     '<a href="tel:'+PHONE+'">تواصل معنا</a>'
+      +     '<button data-close="1">إغلاق</button>'
+      +   '</div>'
+      + '</div>';
+      back.addEventListener("click", function(e){
+        if(e.target===back || (e.target.getAttribute && e.target.getAttribute("data-close"))){
+          document.body.removeChild(back);
         }
-        function bottomNavHTML() {
-            var a = function (page) { return state.page === page ? 'active' : ''; };
-            return ''
-                + '<div class="bottom-nav">'
-                + '<button class="' + a("home") + '" data-go="home">' + ICON.home(20) + '<span>الرئيسية</span></button>'
-                + '<button class="' + a("listings") + '" data-go="listings">' + ICON.list(20) + '<span>عقاراتنا</span></button>'
-                + '<button class="' + a("reviews") + '" data-go="reviews">' + ICON.star(20) + '<span>التقييمات</span></button>'
-                + '<a href="tel:' + PHONE + '">' + ICON.phone(20) + '<span>اتصل</span></a>'
-                + '</div>';
-        }
-        function homeHTML() {
-            return ''
-                + '<div class="hero">'
-                + '<img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1600" alt="Hero" />'
-                + '<div class="hero-overlay">'
-                + '<h1>مرحباً بكم في مكتب الفائز للعقارات</h1>'
-                + '<p>وجهتكم الموثوقة للعقارات الفاخرة والفرص الاستثمارية في المملكة</p>'
-                + '<button class="btn-primary" data-go="listings">تصفح عقاراتنا</button>'
-                + '</div>'
-                + '</div>';
-        }
-        function cardHTML(p) {
-            return ''
-                + '<div class="card" data-open="' + p.id + '">'
-                + '<img src="' + p.imageUrl + '" alt="' + esc(p.title) + '" />'
-                + '<div class="card-body">'
-                + '<h3>' + p.title + '</h3>'
-                + '<p class="card-loc">' + ICON.pin(16) + p.location + '</p>'
-                + '<p class="card-price">' + p.price + '</p>'
-                + '</div>'
-                + '</div>';
-        }
-        function listingsHTML() {
-            var cat = state.category;
-            var filters = navItems.map(function (it) {
-                return '<button class="filter-btn ' + (cat === it.id ? 'active' : '') + '" data-cat="' + it.id + '">' + it.label + '</button>';
-            }).join('');
-            var cards = properties.filter(function (p) { return p.category === cat; }).map(cardHTML).join('');
-            return ''
-                + '<div class="section">'
-                + '<h2 class="section-title">استكشف عقاراتنا المميزة</h2>'
-                + '<div class="filters">' + filters + '</div>'
-                + '<div class="grid-props grid-anim" id="propGrid">' + cards + '</div>'
-                + '</div>';
-        }
-        function reviewsHTML() {
-            var items = reviews.map(function (r) {
-                var stars = ''; for (var i = 0; i < r.rating; i++) { stars += ICON.star(18, true); }
-                return '<div class="review"><div class="stars">' + stars + '</div><p class="comment">"' + r.comment + '"</p><p class="name">' + r.name + '</p></div>';
-            }).join('');
-            return '<div class="section"><h2 class="section-title">آراء عملائنا</h2><div class="grid-reviews">' + items + '</div></div>';
-        }
-        function footerHTML() {
-            return ''
-                + '<footer><div class="footer-grid">'
-                + '<div><h3 class="big">الفائز للعقارات</h3><p>وجهتكم الموثوقة للعقارات الفاخرة والفرص الاستثمارية في المملكة. نلتزم بتقديم أفضل الخدمات العقارية بكل احترافية وشفافية.</p></div>'
-                + '<div class="footer-col-center"><h3>روابط سريعة</h3><div class="footer-links"><button data-go="home">الرئيسية</button><button data-go="listings">عقاراتنا</button><button data-go="reviews">التقييمات</button></div></div>'
-                + '<div class="footer-col-end"><h3>تواصل معنا</h3><a class="footer-phone" href="tel:' + PHONE + '">' + PHONE + '</a><p style="margin-top:.5rem">الرياض، المملكة العربية السعودية</p></div>'
-                + '</div>'
-                + '<div class="footer-bottom">جميع الحقوق محفوظة © 2026 الفائز للعقارات</div>'
-                + '</footer>';
-        }
-        function pageBody() {
-            if (state.page === "home") return homeHTML();
-            if (state.page === "listings") return listingsHTML();
-            return reviewsHTML();
-        }
-        function render() {
-            var app = document.getElementById("app");
-            app.innerHTML = headerHTML()
-                + bottomNavHTML()
-                + '<main><div class="page-anim">' + pageBody() + '</div></main>'
-                + footerHTML();
-        }
-        function openModal(id) {
-            var p = properties.filter(function (x) { return x.id === id; })[0];
-            if (!p) return;
-            var back = document.createElement("div");
-            back.className = "modal-back";
-            back.innerHTML = ''
-                + '<div class="modal">'
-                + '<h2>' + p.title + '</h2>'
-                + '<img src="' + p.imageUrl + '" alt="' + esc(p.title) + '" />'
-                + '<p class="desc">' + p.fullDetails + '</p>'
-                + '<p class="price">' + p.price + '</p>'
-                + '<div class="modal-actions">'
-                + '<a href="tel:' + PHONE + '">تواصل معنا</a>'
-                + '<button data-close="1">إغلاق</button>'
-                + '</div>'
-                + '</div>';
-            back.addEventListener("click", function (e) {
-                if (e.target === back || (e.target.getAttribute && e.target.getAttribute("data-close"))) {
-                    document.body.removeChild(back);
-                }
-            });
-            document.body.appendChild(back);
-        }
-        document.addEventListener("click", function (e) {
-            var t = e.target.closest ? e.target.closest("[data-go],[data-cat],[data-open]") : null;
-            if (!t) return;
-            if (t.hasAttribute("data-go")) {
-                state.page = t.getAttribute("data-go");
-                render();
-                window.scrollTo({ top: 0, behavior: "smooth" });
-            } else if (t.hasAttribute("data-cat")) {
-                state.category = t.getAttribute("data-cat");
-                render();
-            } else if (t.hasAttribute("data-open")) {
-                openModal(t.getAttribute("data-open"));
-            }
-        });
+      });
+      document.body.appendChild(back);
+    }
+    document.addEventListener("click", function(e){
+      var t = e.target.closest ? e.target.closest("[data-go],[data-cat],[data-open]") : null;
+      if(!t) return;
+      if(t.hasAttribute("data-go")){
+        state.page = t.getAttribute("data-go");
         render();
-    </script>
+        window.scrollTo({ top:0, behavior:"smooth" });
+      } else if(t.hasAttribute("data-cat")){
+        state.category = t.getAttribute("data-cat");
+        render();
+      } else if(t.hasAttribute("data-open")){
+        openModal(t.getAttribute("data-open"));
+      }
+    });
+    render();
+  </script>
 </body>
-
 </html>
