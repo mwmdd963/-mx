@@ -1,4 +1,4 @@
-
+تم بنجاح! وكيل الاختبار أكّد نجاح كل التعديلات على الديسكتوب والجوال. تفضّل الكود الكامل النهائي في صفحة واحدة index.html:
 
 <!doctype html>
 <html lang="ar" dir="rtl">
@@ -58,10 +58,11 @@
     .bottom-nav span{ font-size:.75rem; margin-top:.25rem; }
 
     .hero{
-      position:relative; width:100%; height:100vh; height:100dvh; overflow:hidden;
+      position:relative; width:100%; height:100vh; height:100dvh; min-height:32rem; overflow:hidden;
       box-shadow:0 25px 50px -12px rgba(0,0,0,.25);
+      background-color:var(--emerald-950);
       background-image:url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1600');
-      background-size:cover; background-position:center; background-repeat:no-repeat;
+      background-size:cover; background-position:center center; background-repeat:no-repeat;
     }
     .hero-overlay{
       position:absolute; inset:0; background:rgba(0,0,0,.5);
@@ -125,8 +126,10 @@
     .modal .desc{ color:var(--gray-600); margin-bottom:1rem; }
     .modal .price{ font-size:1.25rem; font-weight:700; color:var(--emerald-600); margin-bottom:1.5rem; }
     .modal-actions{ display:flex; flex-direction:column; gap:.75rem; }
-    .modal-actions a{ width:100%; background:var(--emerald-600); color:#fff; padding:.75rem; border-radius:9999px; font-weight:700; text-align:center; transition:background .2s; }
+    .modal-actions a{ width:100%; background:var(--emerald-600); color:#fff; padding:.75rem; border-radius:9999px; font-weight:700; text-align:center; display:flex; align-items:center; justify-content:center; gap:.5rem; transition:background .2s; }
     .modal-actions a:hover{ background:var(--emerald-700); }
+    .modal-actions a.wa-btn{ background:#25D366; }
+    .modal-actions a.wa-btn:hover{ background:#1ebe57; }
     .modal-actions button{ width:100%; background:var(--gray-100); color:var(--gray-900); padding:.75rem; border-radius:9999px; font-weight:700; transition:background .2s; }
     .modal-actions button:hover{ background:var(--gray-200); }
 
@@ -144,8 +147,6 @@
 
     .btn-whatsapp{ display:inline-flex; align-items:center; gap:.5rem; background:#25D366; color:#fff; padding:.625rem 1.25rem; border-radius:9999px; font-weight:700; margin-top:.85rem; transition:background .2s; }
     .btn-whatsapp:hover{ background:#1ebe57; }
-    .wa-float{ position:fixed; bottom:1.5rem; left:1.5rem; z-index:55; background:#25D366; color:#fff; width:56px; height:56px; border-radius:9999px; display:flex; align-items:center; justify-content:center; box-shadow:0 10px 20px rgba(0,0,0,.25); transition:transform .2s; }
-    .wa-float:hover{ transform:scale(1.08); }
 
     @keyframes pageIn{ from{opacity:0; transform:translateX(20px);} to{opacity:1; transform:translateX(0);} }
     .page-anim{ animation: pageIn .35s ease-out both; }
@@ -156,17 +157,16 @@
 
     @media (max-width: 767px){
       .nav-links{ display:none; }
-      main{ padding-bottom:5rem; }
       .bottom-nav{
         display:flex; position:fixed; bottom:0; left:0; right:0;
         background:var(--emerald-950); border-top:1px solid var(--emerald-900);
         padding:.5rem; padding-bottom:calc(.5rem + env(safe-area-inset-bottom));
         justify-content:space-around; z-index:50;
       }
+      footer{ padding-bottom:calc(4rem + 5rem + env(safe-area-inset-bottom)); }
       .hero-overlay h1{ font-size:1.75rem; }
       .hero-overlay p{ font-size:1rem; }
       .section-title{ font-size:1.5rem; }
-      .wa-float{ bottom:5.5rem; }
     }
     @media (min-width: 768px){
       .grid-props{ grid-template-columns:repeat(2,1fr); }
@@ -230,7 +230,7 @@
       +     '<button data-go="home">الرئيسية</button>'
       +     '<button data-go="listings">عقاراتنا</button>'
       +     '<button data-go="reviews">التقييمات</button>'
-      +     '<a class="btn-contact" href="tel:'+PHONE+'">تواصل معنا</a>'
+      +     '<button class="btn-contact" data-contact="1">تواصل معنا</button>'
       +   '</div>'
       + '</nav></header>';
     }
@@ -241,7 +241,7 @@
       +   '<button class="'+a("home")+'" data-go="home">'+ICON.home(20)+'<span>الرئيسية</span></button>'
       +   '<button class="'+a("listings")+'" data-go="listings">'+ICON.list(20)+'<span>عقاراتنا</span></button>'
       +   '<button class="'+a("reviews")+'" data-go="reviews">'+ICON.star(20)+'<span>التقييمات</span></button>'
-      +   '<a href="tel:'+PHONE+'">'+ICON.phone(20)+'<span>اتصل</span></a>'
+      +   '<button data-contact="1">'+ICON.phone(20)+'<span>اتصل</span></button>'
       + '</div>';
     }
     function homeHTML(){
@@ -305,9 +305,9 @@
       app.innerHTML = headerHTML()
         + bottomNavHTML()
         + '<main><div class="page-anim">'+pageBody()+'</div></main>'
-        + footerHTML()
-        + '<a class="wa-float" href="https://wa.me/'+WHATSAPP+'" target="_blank" rel="noopener" aria-label="واتساب">'+ICON.whatsapp(28)+'</a>';
+        + footerHTML();
     }
+
     function openModal(id){
       var p = properties.filter(function(x){ return x.id===id; })[0];
       if(!p) return;
@@ -320,7 +320,8 @@
       +   '<p class="desc">'+p.fullDetails+'</p>'
       +   '<p class="price">'+p.price+'</p>'
       +   '<div class="modal-actions">'
-      +     '<a href="tel:'+PHONE+'">تواصل معنا</a>'
+      +     '<a href="tel:'+PHONE+'">'+ICON.phone(18)+'اتصل بنا</a>'
+      +     '<a class="wa-btn" href="https://wa.me/'+WHATSAPP+'" target="_blank" rel="noopener">'+ICON.whatsapp(18)+'تواصل معنا على واتساب</a>'
       +     '<button data-close="1">إغلاق</button>'
       +   '</div>'
       + '</div>';
@@ -331,8 +332,29 @@
       });
       document.body.appendChild(back);
     }
+
+    function openContactSheet(){
+      var back = document.createElement("div");
+      back.className = "modal-back";
+      back.innerHTML = ''
+      + '<div class="modal">'
+      +   '<h2>تواصل معنا</h2>'
+      +   '<div class="modal-actions">'
+      +     '<a href="tel:'+PHONE+'">'+ICON.phone(18)+'اتصل بنا</a>'
+      +     '<a class="wa-btn" href="https://wa.me/'+WHATSAPP+'" target="_blank" rel="noopener">'+ICON.whatsapp(18)+'تواصل معنا على واتساب</a>'
+      +     '<button data-close="1">إغلاق</button>'
+      +   '</div>'
+      + '</div>';
+      back.addEventListener("click", function(e){
+        if(e.target===back || (e.target.getAttribute && e.target.getAttribute("data-close"))){
+          document.body.removeChild(back);
+        }
+      });
+      document.body.appendChild(back);
+    }
+
     document.addEventListener("click", function(e){
-      var t = e.target.closest ? e.target.closest("[data-go],[data-cat],[data-open]") : null;
+      var t = e.target.closest ? e.target.closest("[data-go],[data-cat],[data-open],[data-contact]") : null;
       if(!t) return;
       if(t.hasAttribute("data-go")){
         state.page = t.getAttribute("data-go");
@@ -343,6 +365,8 @@
         render();
       } else if(t.hasAttribute("data-open")){
         openModal(t.getAttribute("data-open"));
+      } else if(t.hasAttribute("data-contact")){
+        openContactSheet();
       }
     });
     render();
