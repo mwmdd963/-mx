@@ -785,7 +785,6 @@
     <script>
         function uImg(id) { return "https://images.unsplash.com/photo-" + id + "?auto=format&fit=crop&q=80&w=800"; }
 
-        // تم استبدال معرّفات الصور الخاصة بالأراضي بروابط مستقرة وتعمل بشكل كامل ومماثلة تماماً لبقية الأقسام
         var properties = [
             { id: "1", title: "فيلا فاخرة", price: "٢,٥٠٠,٠٠٠ ر.س", area: "٤٥٠ م²", location: "الرياض, حي الياسمين", fullDetails: "فيلا فاخرة مكونة من 5 غرف نوم، مسابح، وحديقة واسعة، في قلب حي الياسمين الراقي.", images: ["1512917774080-9991f1c4c750", "1600596542815-ffad4c1539a9", "1600607687939-ce8a6c25118c", "1613977257363-707ba9348227", "1613490493576-7fde63acd811"].map(uImg), category: "villa" },
             { id: "2", title: "فيلا كلاسيكية", price: "١,٨٠٠,٠٠٠ ر.س", area: "٤٠٠ م²", location: "الرياض, حي الملقا", fullDetails: "فيلا بتصميم كلاسيكي رائع، مساحة كبيرة، وموقع استراتيجي في حي الملقا.", images: ["1613490493576-7fde63acd811", "1600585154340-be6161a56a0c", "1600566753086-00f18fb6b3ea", "1600047509807-ba8f99d2cdde", "1568605114967-8130f3a36994"].map(uImg), category: "villa" },
@@ -839,12 +838,14 @@
         }
         function bottomNavHTML() {
             var a = function (page) { return state.page === page ? 'active' : ''; };
+            var baseMsg = encodeURIComponent("مرحباً الفائز للعقارات، أود الاستفسار عن الخدمات والعقارات المتاحة.");
             return ''
                 + '<div class="bottom-nav">'
                 + '<button class="' + a("home") + '" data-go="home">' + ICON.home(20) + '<span>الرئيسية</span></button>'
                 + '<button class="' + a("listings") + '" data-go="listings">' + ICON.list(20) + '<span>عقاراتنا</span></button>'
                 + '<button class="' + a("reviews") + '" data-go="reviews">' + ICON.star(20) + '<span>التقييمات</span></button>'
-                + '<button data-contact="1">' + ICON.phone(20) + '<span>اتصل</span></button>'
+                + '<a href="tel:' + PHONE + '">' + ICON.phone(20) + '<span>تواصل معنا</span></a>'
+                + '<a href="whatsapp://send?phone=' + WHATSAPP + '&text=' + baseMsg + '" style="color:#25D366;">' + ICON.whatsapp(20) + '<span>واتساب</span></a>'
                 + '</div>';
         }
         function homeHTML() {
@@ -903,7 +904,7 @@
                 + '<footer><div class="footer-grid">'
                 + '<div><h3 class="big">الفائز للعقارات</h3><p>وجهتكم الموثوقة للعقارات الفاخرة والفرص الاستثمارية في المملكة. نلتزم بتقديم أفضل الخدمات العقارية بكل احترافية وشفافية.</p></div>'
                 + '<div class="footer-col-center"><h3>روابط سريعة</h3><div class="footer-links"><button data-go="home">الرئيسية</button><button data-go="listings">عقاراتنا</button><button data-go="reviews">التقييمات</button></div></div>'
-                + '<div class="footer-col-end"><h3>تواصل معنا</h3><a class="footer-phone" href="tel:' + PHONE + '">' + PHONE + '</a><p style="margin-top:.5rem">الرياض، المملكة العربية السعودية</p><a class="btn-whatsapp" href="https://wa.me/' + WHATSAPP + '?text=' + mainMsg + '" target="_blank" rel="noopener">' + ICON.whatsapp(20) + 'تواصل معنا على واتساب</a></div>'
+                + '<div class="footer-col-end"><h3>تواصل معنا</h3><a class="footer-phone" href="tel:' + PHONE + '">' + PHONE + '</a><p style="margin-top:.5rem">الرياض، المملكة العربية السعودية</p><a class="btn-whatsapp" href="whatsapp://send?phone=' + WHATSAPP + '&text=' + mainMsg + '">' + ICON.whatsapp(20) + 'تواصل معنا على واتساب</a></div>'
                 + '</div>'
                 + '<div class="footer-bottom">جميع الحقوق محفوظة © 2026 الفائز للعقارات</div>'
                 + '</footer>';
@@ -941,7 +942,7 @@
             document.querySelectorAll('[data-contact]').forEach(function (btn) {
                 btn.addEventListener('click', function () {
                     var defaultMsg = encodeURIComponent("مرحباً الفائز للعقارات، أود الاستفسار عن العقارات المتاحة.");
-                    window.open('https://wa.me/' + WHATSAPP + '?text=' + defaultMsg, '_blank');
+                    window.location.href = 'whatsapp://send?phone=' + WHATSAPP + '&text=' + defaultMsg;
                 });
             });
 
@@ -1058,7 +1059,7 @@
                 + '<p class="desc">' + p.fullDetails + '</p>'
                 + '<div class="price">' + p.price + ' - ' + p.area + '</div>'
                 + '<div class="modal-actions">'
-                + '<a class="wa-btn" href="https://wa.me/' + WHATSAPP + '?text=' + encodeURIComponent('مرحباً الفائز للعقارات، أود الاستفسار عن: ' + p.title + ' المتواجد في ' + p.location + '.') + '" target="_blank" rel="noopener">' + ICON.whatsapp(20) + 'استفسار مباشر عبر واتساب</a>'
+                + '<a class="wa-btn" href="whatsapp://send?phone=' + WHATSAPP + '&text=' + encodeURIComponent('مرحباً الفائز للعقارات، أود الاستفسار عن: ' + p.title + ' المتواجد في ' + p.location + '.') + '">' + ICON.whatsapp(20) + 'استفسار مباشر عبر واتساب</a>'
                 + '<a href="tel:' + PHONE + '">' + ICON.phone(20) + 'اتصال مباشر</a>'
                 + '<button id="closeModal">إغلاق المعاينة</button>'
                 + '</div>'
