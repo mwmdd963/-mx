@@ -960,7 +960,7 @@
                         startX = e.clientX;
                         currentX = e.clientX;
                         carousel.classList.add("dragging");
-                        try { carousel.setPointerCapture(pointerId); } catch (err) {}
+                        try { carousel.setPointerCapture(pointerId); } catch (err) { }
                     }
                     function onMove(e) {
                         if (!dragging) return;
@@ -977,7 +977,7 @@
                         var idx = parseInt(carousel.getAttribute("data-index"), 10) || 0;
                         dragging = false;
                         carousel.classList.remove("dragging");
-                        try { carousel.releasePointerCapture(pointerId); } catch (err) {}
+                        try { carousel.releasePointerCapture(pointerId); } catch (err) { }
                         var threshold = Math.max(40, width * 0.15);
                         if (Math.abs(dx) > threshold) {
                             setCarouselIndex(carousel, idx + (dx < 0 ? 1 : -1), true);
@@ -1079,7 +1079,7 @@
                 dragging = true;
                 pid = e.pointerId;
                 sx = cx = e.clientX;
-                try { stage.setPointerCapture(pid); } catch (err) {}
+                try { stage.setPointerCapture(pid); } catch (err) { }
             });
             stage.addEventListener("pointermove", function (e) {
                 if (!dragging) return;
@@ -1088,7 +1088,7 @@
             function endStageDrag() {
                 if (!dragging) return;
                 dragging = false;
-                try { stage.releasePointerCapture(pid); } catch (err) {}
+                try { stage.releasePointerCapture(pid); } catch (err) { }
                 var dx = cx - sx;
                 var width = stage.getBoundingClientRect().width || 1;
                 var threshold = Math.max(40, width * 0.15);
@@ -1143,5 +1143,3 @@
 </body>
 
 </html>
-
-
