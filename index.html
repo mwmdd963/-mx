@@ -55,6 +55,24 @@
         img {
             display: block;
             max-width: 100%;
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: crisp-edges;
+        }
+
+        img[loading="lazy"] {
+            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background-size: 200% 100%;
+            animation: shimmer 1.5s infinite;
+        }
+
+        @keyframes shimmer {
+            0% {
+                background-position: -200% 0;
+            }
+
+            100% {
+                background-position: 200% 0;
+            }
         }
 
         button {
@@ -264,7 +282,6 @@
             box-shadow: 0 20px 25px -5px rgba(0, 0, 0, .1), 0 8px 10px -6px rgba(0, 0, 0, .1);
         }
 
-        /* ===== سلايدر صور الكرت ===== */
         .card-carousel {
             position: relative;
             width: 100%;
@@ -429,15 +446,6 @@
             margin-bottom: 1rem;
         }
 
-        .modal img {
-            width: 100%;
-            height: 16rem;
-            object-fit: cover;
-            border-radius: 1rem;
-            margin-bottom: 1.5rem;
-        }
-
-        /* ===== معرض صور نافذة التفاصيل (احترافي) ===== */
         .modal-gallery {
             margin-bottom: 1.5rem;
         }
@@ -742,7 +750,6 @@
                 font-size: 1.5rem;
             }
 
-            /* على الموبايل: إخفاء أزرار السهم في نافذة التفاصيل، الاعتماد على السحب */
             .gallery-stage .gal-btn {
                 display: none;
             }
@@ -822,7 +829,6 @@
             phone: function (s) { return svg('<path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>', s); },
             star: function (s, fill) { return '<svg xmlns="http://www.w3.org/2000/svg" width="' + (s || 24) + '" height="' + (s || 24) + '" viewBox="0 0 24 24" fill="' + (fill ? "currentColor" : "none") + '" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>'; },
             pin: function (s) { return svg('<path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/>', s); },
-            image: function (s) { return svg('<rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/>', s); },
             whatsapp: function (s) { return '<svg xmlns="http://www.w3.org/2000/svg" width="' + (s || 24) + '" height="' + (s || 24) + '" viewBox="0 0 24 24" fill="currentColor"><path d="M17.6 6.3A7.85 7.85 0 0 0 12 4a7.94 7.94 0 0 0-6.9 11.9L4 20l4.2-1.1A8 8 0 0 0 12 20a7.94 7.94 0 0 0 5.6-13.7ZM12 18.5a6.6 6.6 0 0 1-3.4-.9l-.24-.15-2.5.66.67-2.43-.16-.25A6.55 6.55 0 1 1 12 18.5Zm3.6-4.9c-.2-.1-1.17-.58-1.35-.64s-.31-.1-.44.1-.5.64-.62.77-.23.15-.43.05a5.4 5.4 0 0 1-1.59-.98 6 6 0 0 1-1.1-1.37c-.11-.2 0-.3.09-.4l.3-.35a1.35 1.35 0 0 0 .2-.33.37.37 0 0 0 0-.35c0-.1-.44-1.06-.6-1.45s-.32-.33-.44-.34h-.38a.72.72 0 0 0-.52.24 2.19 2.19 0 0 0-.69 1.64 3.8 3.8 0 0 0 .8 2 8.71 8.71 0 0 0 3.34 2.95c.47.2.83.32 1.11.41a2.68 2.68 0 0 0 1.23.08 2 2 0 0 0 1.32-.93 1.65 1.65 0 0 0 .11-.93c-.05-.08-.18-.13-.38-.23Z"/></svg>'; }
         };
 
@@ -830,36 +836,14 @@
         function esc(str) { return String(str).replace(/"/g, '&quot;'); }
 
         function headerHTML() {
-            return ''
-                + '<header><nav class="nav">'
-                + '<h1 class="brand" data-go="home">الفائز للعقارات</h1>'
-                + '<div class="nav-links">'
-                + '<button data-go="home">الرئيسية</button>'
-                + '<button data-go="listings">عقاراتنا</button>'
-                + '<button data-go="reviews">التقييمات</button>'
-                + '<button class="btn-contact" data-contact="1">تواصل معنا</button>'
-                + '</div>'
-                + '</nav></header>';
+            return '<header><nav class="nav"><h1 class="brand" data-go="home">الفائز للعقارات</h1><div class="nav-links"><button data-go="home">الرئيسية</button><button data-go="listings">عقاراتنا</button><button data-go="reviews">التقييمات</button><button class="btn-contact" data-contact="1">تواصل معنا</button></div></nav></header>';
         }
         function bottomNavHTML() {
             var a = function (page) { return state.page === page ? 'active' : ''; };
-            return ''
-                + '<div class="bottom-nav">'
-                + '<button class="' + a("home") + '" data-go="home">' + ICON.home(20) + '<span>الرئيسية</span></button>'
-                + '<button class="' + a("listings") + '" data-go="listings">' + ICON.list(20) + '<span>عقاراتنا</span></button>'
-                + '<button class="' + a("reviews") + '" data-go="reviews">' + ICON.star(20) + '<span>التقييمات</span></button>'
-                + '<button data-contact="1">' + ICON.phone(20) + '<span>اتصل</span></button>'
-                + '</div>';
+            return '<div class="bottom-nav"><button class="' + a("home") + '" data-go="home">' + ICON.home(20) + '<span>الرئيسية</span></button><button class="' + a("listings") + '" data-go="listings">' + ICON.list(20) + '<span>عقاراتنا</span></button><button class="' + a("reviews") + '" data-go="reviews">' + ICON.star(20) + '<span>التقييمات</span></button><button data-contact="1">' + ICON.phone(20) + '<span>اتصل</span></button></div>';
         }
         function homeHTML() {
-            return ''
-                + '<div class="hero">'
-                + '<div class="hero-overlay">'
-                + '<h1>مرحباً بكم في مكتب الفائز للعقارات</h1>'
-                + '<p>وجهتكم الموثوقة للعقارات الفاخرة والفرص الاستثمارية في المملكة</p>'
-                + '<button class="btn-primary" data-go="listings">تصفح عقاراتنا</button>'
-                + '</div>'
-                + '</div>';
+            return '<div class="hero"><div class="hero-overlay"><h1>مرحباً بكم في مكتب الفائز للعقارات</h1><p>وجهتكم الموثوقة للعقارات الفاخرة والفرص الاستثمارية في المملكة</p><button class="btn-primary" data-go="listings">تصفح عقاراتنا</button></div></div>';
         }
         function cardHTML(p) {
             var imgs = p.images.map(function (src, i) {
@@ -868,18 +852,7 @@
             var dots = p.images.map(function (src, i) {
                 return '<span class="dot ' + (i === 0 ? 'active' : '') + '"></span>';
             }).join('');
-            return ''
-                + '<div class="card" data-open="' + p.id + '">'
-                + '<div class="card-carousel" data-carousel data-index="0">'
-                + '<div class="carousel-track">' + imgs + '</div>'
-                + '<div class="carousel-dots">' + dots + '</div>'
-                + '</div>'
-                + '<div class="card-body">'
-                + '<h3>' + p.title + '</h3>'
-                + '<p class="card-loc">' + ICON.pin(16) + p.location + '</p>'
-                + '<div class="card-price-row"><span class="card-price">' + p.price + '</span><span class="card-area">' + p.area + '</span></div>'
-                + '</div>'
-                + '</div>';
+            return '<div class="card" data-open="' + p.id + '"><div class="card-carousel" data-carousel data-index="0"><div class="carousel-track">' + imgs + '</div><div class="carousel-dots">' + dots + '</div></div><div class="card-body"><h3>' + p.title + '</h3><p class="card-loc">' + ICON.pin(16) + p.location + '</p><div class="card-price-row"><span class="card-price">' + p.price + '</span><span class="card-area">' + p.area + '</span></div></div></div>';
         }
         function listingsHTML() {
             var cat = state.category;
@@ -887,12 +860,7 @@
                 return '<button class="filter-btn ' + (cat === it.id ? 'active' : '') + '" data-cat="' + it.id + '">' + it.label + '</button>';
             }).join('');
             var cards = properties.filter(function (p) { return p.category === cat; }).map(cardHTML).join('');
-            return ''
-                + '<div class="section">'
-                + '<h2 class="section-title">استكشف عقاراتنا المميزة</h2>'
-                + '<div class="filters">' + filters + '</div>'
-                + '<div class="grid-props grid-anim" id="propGrid">' + cards + '</div>'
-                + '</div>';
+            return '<div class="section"><h2 class="section-title">استكشف عقاراتنا المميزة</h2><div class="filters">' + filters + '</div><div class="grid-props grid-anim" id="propGrid">' + cards + '</div></div>';
         }
         function reviewsHTML() {
             var items = reviews.map(function (r) {
@@ -902,14 +870,7 @@
             return '<div class="section"><h2 class="section-title">آراء عملائنا</h2><div class="grid-reviews">' + items + '</div></div>';
         }
         function footerHTML() {
-            return ''
-                + '<footer><div class="footer-grid">'
-                + '<div><h3 class="big">الفائز للعقارات</h3><p>وجهتكم الموثوقة للعقارات الفاخرة والفرص الاستثمارية في المملكة. نلتزم بتقديم أفضل الخدمات العقارية بكل احترافية وشفافية.</p></div>'
-                + '<div class="footer-col-center"><h3>روابط سريعة</h3><div class="footer-links"><button data-go="home">الرئيسية</button><button data-go="listings">عقاراتنا</button><button data-go="reviews">التقييمات</button></div></div>'
-                + '<div class="footer-col-end"><h3>تواصل معنا</h3><a class="footer-phone" href="tel:' + PHONE + '">' + PHONE + '</a><p style="margin-top:.5rem">الرياض، المملكة العربية السعودية</p><a class="btn-whatsapp" href="https://wa.me/' + WHATSAPP + '" target="_blank" rel="noopener">' + ICON.whatsapp(20) + 'تواصل معنا على واتساب</a></div>'
-                + '</div>'
-                + '<div class="footer-bottom">جميع الحقوق محفوظة © 2026 الفائز للعقارات</div>'
-                + '</footer>';
+            return '<footer><div class="footer-grid"><div><h3 class="big">الفائز للعقارات</h3><p>وجهتكم الموثوقة للعقارات الفاخرة والفرص الاستثمارية في المملكة. نلتزم بتقديم أفضل الخدمات العقارية بكل احترافية وشفافية.</p></div><div class="footer-col-center"><h3>روابط سريعة</h3><div class="footer-links"><button data-go="home">الرئيسية</button><button data-go="listings">عقاراتنا</button><button data-go="reviews">التقييمات</button></div></div><div class="footer-col-end"><h3>تواصل معنا</h3><a class="footer-phone" href="tel:' + PHONE + '">' + PHONE + '</a><p style="margin-top:.5rem">الرياض، المملكة العربية السعودية</p><a class="btn-whatsapp" href="https://api.whatsapp.com/send?phone=' + WHATSAPP + '" target="_blank" rel="noopener">' + ICON.whatsapp(20) + 'تواصل معنا على واتساب</a></div></div><div class="footer-bottom">جميع الحقوق محفوظة © 2026 الفائز للعقارات</div></footer>';
         }
         function pageBody() {
             if (state.page === "home") return homeHTML();
@@ -918,10 +879,7 @@
         }
         function render() {
             var app = document.getElementById("app");
-            app.innerHTML = headerHTML()
-                + bottomNavHTML()
-                + '<main><div class="page-anim">' + pageBody() + '</div></main>'
-                + footerHTML();
+            app.innerHTML = headerHTML() + bottomNavHTML() + '<main><div class="page-anim">' + pageBody() + '</div></main>' + footerHTML();
             attachCardCarousels();
         }
 
@@ -942,7 +900,6 @@
             }
         }
 
-        // ===== سحب الصور في كروت العرض (تاتش + ماوس) =====
         function attachCardCarousels() {
             var carousels = document.querySelectorAll("[data-carousel]");
             for (var c = 0; c < carousels.length; c++) {
@@ -985,7 +942,6 @@
                             setCarouselIndex(carousel, idx, true);
                         }
                         if (moved) {
-                            // منع فتح نافذة التفاصيل بعد السحب
                             var stopClick = function (ev) {
                                 ev.stopPropagation();
                                 ev.preventDefault();
@@ -1012,28 +968,15 @@
             if (!p) return;
             var total = p.images.length;
             var stageImgs = p.images.map(function (src, i) {
-                return '<img src="' + src + '" alt="' + esc(p.title) + ' ' + (i + 1) + '" class="' + (i === 0 ? 'active' : '') + '" data-slide="' + i + '" draggable="false" />';
+                return '<img src="' + src + '" alt="' + esc(p.title) + ' ' + (i + 1) + '" class="' + (i === 0 ? 'active' : '') + '" data-slide="' + i + '" draggable="false" loading="lazy" />';
             }).join('');
             var back = document.createElement("div");
             back.className = "modal-back";
-            back.innerHTML = ''
-                + '<div class="modal">'
-                + '<h2>' + p.title + '</h2>'
-                + '<div class="modal-gallery" data-index="0">'
-                + '<div class="gallery-stage">'
-                + stageImgs
-                + '<button class="gal-btn gal-prev" data-gal="prev" aria-label="السابق">&#8249;</button>'
-                + '<button class="gal-btn gal-next" data-gal="next" aria-label="التالي">&#8250;</button>'
-                + '</div>'
-                + '</div>'
-                + '<p class="desc">' + p.fullDetails + '</p>'
-                + '<p class="price">' + p.price + '</p>'
-                + '<div class="modal-actions">'
-                + '<a href="tel:' + PHONE + '">' + ICON.phone(18) + 'اتصل بنا</a>'
-                + '<a class="wa-btn" href="https://wa.me/' + WHATSAPP + '" target="_blank" rel="noopener">' + ICON.whatsapp(18) + 'تواصل معنا على واتساب</a>'
-                + '<button data-close="1">إغلاق</button>'
-                + '</div>'
-                + '</div>';
+
+            var waMsg = encodeURIComponent('مرحباً، أنا مهتم بـ ' + p.title + ' في ' + p.location);
+            var waLink = 'https://api.whatsapp.com/send?phone=' + WHATSAPP + '&text=' + waMsg;
+
+            back.innerHTML = '<div class="modal"><h2>' + p.title + '</h2><div class="modal-gallery" data-index="0"><div class="gallery-stage">' + stageImgs + '<button class="gal-btn gal-prev" data-gal="prev">&#8249;</button><button class="gal-btn gal-next" data-gal="next">&#8250;</button></div></div><p class="desc">' + p.fullDetails + '</p><p class="price">' + p.price + '</p><div class="modal-actions"><a href="tel:' + PHONE + '">' + ICON.phone(18) + 'اتصل بنا</a><a class="wa-btn" href="' + waLink + '" target="_blank" rel="noopener">' + ICON.whatsapp(18) + 'تواصل معنا على واتساب</a><button data-close="1">إغلاق</button></div></div>';
 
             function showSlide(idx) {
                 var gallery = back.querySelector(".modal-gallery");
@@ -1070,7 +1013,6 @@
             document.addEventListener("keydown", onKey);
             document.body.appendChild(back);
 
-            // ===== سحب داخل نافذة التفاصيل (يعمل على الموبايل والكمبيوتر) =====
             var stage = back.querySelector(".gallery-stage");
             var sx = 0, cx = 0, dragging = false, pid = null;
             stage.addEventListener("pointerdown", function (e) {
@@ -1105,15 +1047,11 @@
         function openContactSheet() {
             var back = document.createElement("div");
             back.className = "modal-back";
-            back.innerHTML = ''
-                + '<div class="modal">'
-                + '<h2>تواصل معنا</h2>'
-                + '<div class="modal-actions">'
-                + '<a href="tel:' + PHONE + '">' + ICON.phone(18) + 'اتصل بنا</a>'
-                + '<a class="wa-btn" href="https://wa.me/' + WHATSAPP + '" target="_blank" rel="noopener">' + ICON.whatsapp(18) + 'تواصل معنا على واتساب</a>'
-                + '<button data-close="1">إغلاق</button>'
-                + '</div>'
-                + '</div>';
+
+            var waMsg = encodeURIComponent('مرحباً، أريد الاستفسار عن العقارات');
+            var waLink = 'https://api.whatsapp.com/send?phone=' + WHATSAPP + '&text=' + waMsg;
+
+            back.innerHTML = '<div class="modal"><h2>تواصل معنا</h2><div class="modal-actions"><a href="tel:' + PHONE + '">' + ICON.phone(18) + 'اتصل بنا</a><a class="wa-btn" href="' + waLink + '" target="_blank" rel="noopener">' + ICON.whatsapp(18) + 'تواصل معنا على واتساب</a><button data-close="1">إغلاق</button></div></div>';
             back.addEventListener("click", function (e) {
                 if (e.target === back || (e.target.getAttribute && e.target.getAttribute("data-close"))) {
                     document.body.removeChild(back);
